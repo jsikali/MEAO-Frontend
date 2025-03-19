@@ -12,12 +12,15 @@ function App() {
 
   return (
     <div className="wrapper">
+      <h1>render please please please</h1>
       <BrowserRouter>
         <Switch>
-          <Route path="/">
+          <Route path="/pls">
             <h1>hiiiiii hello</h1>
           </Route>
-          <Route path="/login"></Route>
+          <Route path="/login">
+            <h1>login page</h1>
+          </Route>
           <Route path="/messages">
             <>
               <div>
