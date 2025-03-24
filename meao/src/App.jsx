@@ -1,37 +1,16 @@
 import { useState } from 'react'
 import { Row, Col, Divider } from "antd";
 import './App.css'
-
-const ChatBox = ({ header }) => {
-  return (
-    <div style={{
-      backgroundColor:'green',
-      borderRadius:'10%'
-    }}>
-      <h1>
-        { header }
-      </h1>
-      <div style={{
-        height:''
-      }}>
-        chat content
-        chat content
-        chat content
-      </div>
-    </div>
-  );
-};
+import PrivateChatBox from './PrivateChatBox.jsx'
 
 function App() {
   return (
     <div style={{
       width:'100vw',
-      backgroundColor: 'orange',
       align:'left'
     }}>
       <Row justify="space-evenly" style={{
         width:'100%',
-        backgroundColor: 'purple',
         height: '30vh'
       }}>
         <Col span={7} style={{
@@ -51,12 +30,11 @@ function App() {
 
       <Row justify="space-around"style={{
         width:'100%',
-        backgroundColor: 'aqua',
         height: '60vh'
       }}>
         <Col span={7} className="chat-div">
-          <ChatBox header="one-to-one">
-          </ChatBox>
+          <PrivateChatBox>
+          </PrivateChatBox>
         </Col>
         <Col span={7} className="chat-div">
           one-to-many
