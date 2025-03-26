@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { Row, Col, Divider, ConfigProvider } from "antd";
-import './App.css'
-import PrivateChatBox from './PrivateChatBox.jsx'
+import './App.css';
+import PrivateChatBox from './PrivateChatBox.jsx';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         align: 'left'
       }}>
         <Row justify="space-evenly" style={{
-          width: '100%',
+          width: '100vw',
           height: '20vh'
         }}>
           <Col span={7} style={{
@@ -30,16 +30,16 @@ function App() {
           }}>
             =^-.-^=
           </Col>
-          {/* <Col span={7} style={{
+          <Col span={7} style={{
           }}>
-          </Col> */}
+          </Col>
         </Row>
 
         <Divider orientation="left" plain>
         </Divider>
 
         <Row justify="space-around" style={{
-          width: '100%',
+          width: '100vw',
           height: '70vh'
         }}>
           <Col span={7} className="chat-div">

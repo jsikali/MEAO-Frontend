@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
-import { Button, Drawer, theme } from 'antd';
+import { Button, theme } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
-
-const getChatButtons = num => {
-    let content = [];
-    for (let i = 1; i <= num; i++) {
-        const item = <Button type="primary" onClick={() => setIsVisible(!isVisible)} style={{
-            borderRadius: 0,
-            width: '100%'
-        }}>
-            chat # {i}
-        </Button>
-        content.push(item);
-    }
-    return content;
-};
+import PrivateChatSelector from './PrivateChatSelector.jsx';
+import PrivateChatBody from './PrivateChatBody.jsx'
 
 const PrivateChatBox = () => {
     const { token } = theme.useToken();
-    const [isVisible, setIsVisible] = useState(true);
+    const [isSelectingChat, setIsSelectingChat] = useState(true);
+
+    const swapBoxContent = (isSelectingChat) => {
+        console.log("swapping to ", isSelectingChat)
+        if (isSelectingChat) {
+            return <PrivateChatSelector
+                setIsSelectingChat={setIsSelectingChat} />
+        }
+        else {
+            return <PrivateChatBody />
+        }
+    };
 
     const containerStyle = {
         height: '100%',
@@ -32,33 +31,39 @@ const PrivateChatBox = () => {
     return (
         <div style={containerStyle}>
             <div style={{
-                marginTop: '5%',
-                height: '10%',
+                marginTop: '2vh',
+                height: '6vh',
             }}>
-                {isVisible &&
-                    <Button type="primary" icon={<LeftOutlined />} onClick={() => setIsVisible(!isVisible)} style={{
+                {isSelectingChat ? <h2 style={{
+                    color: '#33343d',
+                    marginLeft: '8px'
+                }}>select chat</h2> : <Button
+                    type="primary"
+                    icon={<LeftOutlined />}
+                    onClick={() => setIsSelectingChat(true)}
+                    style={{
                         borderRadius: '10px'
                     }}>
-                        select chat
-                    </Button>
-                }
+                    select chat
+                </Button>}
 
             </div>
             <div style={{
-                height: '58vh',
+                height: '60vh',
                 overflowX: 'hidden',
                 overflowY: 'auto',
+                borderRadius: '10px',
             }}>
                 <div style={{
-                    backgroundColor: 'blue'
+                    backgroundColor: '#7B7D93',
+                    minHeight: '100%',
+                    overflow: 'hidden'
                 }}>
-
-                    { getChatButtons(20) }
-
-
+                    {swapBoxContent(isSelectingChat)}
                 </div>
             </div>
         </div>
     );
 };
+
 export default PrivateChatBox;
