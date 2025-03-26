@@ -37,7 +37,7 @@ const PrivateChatBox = () => {
                 {isSelectingChat ? <h2 style={{
                     color: '#33343d',
                     marginLeft: '8px'
-                }}>select chat</h2> : <Button
+                }}>select a chat :3</h2> : <Button
                     type="primary"
                     icon={<LeftOutlined />}
                     onClick={() => setIsSelectingChat(true)}

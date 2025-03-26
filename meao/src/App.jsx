@@ -1,7 +1,17 @@
 import { useState } from 'react';
-import { Row, Col, Divider, ConfigProvider } from "antd";
+import { Row, Col, Divider, ConfigProvider, Button } from "antd";
 import './App.css';
 import PrivateChatBox from './PrivateChatBox.jsx';
+import axios from 'axios';
+
+const testAxios = () => {
+  axios.get('http://137.112.221.75:5000/')
+    .then(res => {
+      console.log(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+}
 
 function App() {
   return (
@@ -9,6 +19,7 @@ function App() {
       theme={{
         token: {
           colorPrimary: '#33343d',
+          colorInfo: '#7B7D93'
         },
       }}
     >
@@ -22,7 +33,9 @@ function App() {
         }}>
           <Col span={7} style={{
           }}>
-            settings
+            <Button type="primary" onClick={testAxios}>
+              click to test axios (please work)
+            </Button>
           </Col>
           <Col span={14} style={{
             fontSize: '100px',
