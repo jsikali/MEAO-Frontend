@@ -1,8 +1,9 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import { Row, Col, Divider, ConfigProvider, Button } from "antd";
 import './App.css';
 import PrivateChatBox from './PrivateChatBox.jsx';
 import axios from 'axios';
+import Login from './Login.jsx';
 
 const testAxios = () => {
   axios.get('http://137.112.221.75:5000/')
@@ -36,10 +37,10 @@ function App() {
             <Button type="primary" onClick={testAxios}>
               axios.get
             </Button>
-            future login box
+          <Login></Login>
           </Col>
           <Col span={7} style={{
-            fontSize: '100px',
+            fontSize: '7vw',
             textAlign: 'center'
           }}>
             =^-.-^=
@@ -57,15 +58,17 @@ function App() {
           width: '100vw',
           height: '70vh'
         }}>
-          <Col span={7} className="chat-div">
+          <Col span={7} className="chat-div" id="one-to-one">
             <PrivateChatBox>
             </PrivateChatBox>
           </Col>
-          <Col span={7} className="chat-div">
-            one-to-many (looks very similar to one-to-one)
+          <Col span={7} className="chat-div" id="one-to-many">
+            <PrivateChatBox>
+            </PrivateChatBox>
           </Col>
-          <Col span={7} className="chat-div">
-            one-to-all
+          <Col span={7} className="chat-div" id="all">
+            <PrivateChatBox>
+            </PrivateChatBox>
           </Col>
         </Row>
       </div>

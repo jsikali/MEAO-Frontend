@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Button, theme } from 'antd';
+import { Button, /*theme*/ } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import PrivateChatSelector from './PrivateChatSelector.jsx';
 import PrivateChatBody from './PrivateChatBody.jsx'
 
 const PrivateChatBox = () => {
-    const { token } = theme.useToken();
+    //const { token } = theme.useToken();
     const [isSelectingChat, setIsSelectingChat] = useState(true);
 
     const swapBoxContent = (isSelectingChat) => {
