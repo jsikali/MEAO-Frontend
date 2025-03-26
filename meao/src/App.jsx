@@ -34,10 +34,11 @@ function App() {
           <Col span={7} style={{
           }}>
             <Button type="primary" onClick={testAxios}>
-              click to test axios (please work)
+              axios.get
             </Button>
+            future login box
           </Col>
-          <Col span={14} style={{
+          <Col span={7} style={{
             fontSize: '100px',
             textAlign: 'center'
           }}>
@@ -45,6 +46,7 @@ function App() {
           </Col>
           <Col span={7} style={{
           }}>
+            settings
           </Col>
         </Row>
 
@@ -60,6 +62,7 @@ function App() {
             </PrivateChatBox>
           </Col>
           <Col span={7} className="chat-div">
+            one-to-many (looks very similar to one-to-one)
           </Col>
           <Col span={7} className="chat-div">
             one-to-all
