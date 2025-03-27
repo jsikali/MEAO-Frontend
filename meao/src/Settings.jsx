@@ -1,15 +1,15 @@
 import { Button } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
+import { useState } from 'react';
 
-const Settings = ({ setIsLoggedIn, getIsLoggedIn }) => {
+const Settings = ({ setIsLoggedIn }) => {
 
     const containerStyle = {
-        height: "100%",
-        overflow: "auto",
-        padding: "0 5%",
         backgroundColor: "#c2c6E8",
         borderRadius: "16px",
         boxSizing: "border-box",
+        height: "100%",
+        overflow: "auto",
+        padding: "0 5%",
     };
 
     return (
@@ -23,7 +23,12 @@ const Settings = ({ setIsLoggedIn, getIsLoggedIn }) => {
                 <h2>settings</h2>
             </div>
             <div className="top-box-content">
-                in the future we will have keybinds to minimize the chats
+                <Button type="primary" onClick={() => setIsLoggedIn(true)}>
+                    login demo
+                </Button>
+                <Button type="primary" onClick={() => setIsLoggedIn(false)}>
+                    logout demo
+                </Button>
             </div>
         </div>
     );

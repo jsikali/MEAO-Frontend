@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, /*theme*/ } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 
 const PublicChatBox = () => {
+
+    const [time, setTime] = useState(Date.now());
+
+    useEffect(() => {
+        const interval = setInterval(() => setTime(Date.now()), 1000);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
 
     const containerStyle = {
         height: '100%',
@@ -36,7 +45,6 @@ const PublicChatBox = () => {
                     <div style={{
                         padding: '10px'
                     }}>
-                        hullo
                     </div>
                 </div>
             </div>

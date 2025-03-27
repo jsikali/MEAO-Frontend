@@ -7,7 +7,7 @@ import Settings from './Settings.jsx';
 import React, { useState } from "react";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [toggle, switchToggle] = useState(false);
   // const getIsLoggedIn = () => {
   //   return isLoggedIn
@@ -39,7 +39,7 @@ function App() {
           <Col span={7} style={{
           }}>
             <Login
-              setIsLoggedIn={setisLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
               getIsLoggedIn={getIsLoggedIn}
               switchToggle={switchToggle}
               getToggle={getToggle}>
@@ -55,9 +55,8 @@ function App() {
             =^-.-^=
           </Col>
           <Col span={7} style={{}}>
-          <Settings
-              setIsLoggedIn={setisLoggedIn}
-              getIsLoggedIn={getIsLoggedIn}>
+            <Settings
+              setIsLoggedIn={setIsLoggedIn}>
             </Settings>
           </Col>
         </Row>
