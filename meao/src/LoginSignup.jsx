@@ -12,10 +12,9 @@ const Login = ({ setIsLoggedIn, getIsLoggedIn }) => {
   const swapButtons = () => {
     toggle = !toggle;
     console.log("swapping to ", toggle);
-    if (toggle)
-    {
+    if (toggle) {
       return <LoginButton></LoginButton>
-    }else{
+    } else {
       return <SignUpButton></SignUpButton>
     }
   };
@@ -38,16 +37,12 @@ const Login = ({ setIsLoggedIn, getIsLoggedIn }) => {
         }}
       >
         {getIsLoggedIn() ? (
-          <h2
-            style={{
-              color: "#33343d",
-              marginLeft: "8px",
-            }}
-          >
+          <h2>
             logged in!!
           </h2>
         ) : (
           <>
+            <h2>login/sign up!!</h2>
             <div
               id="username"
               style={{
@@ -55,32 +50,28 @@ const Login = ({ setIsLoggedIn, getIsLoggedIn }) => {
                 marginLeft: "8px",
               }}
             >
-              login/sign up!!
             </div>
           </>
         )}
       </div>
 
       <div
-        style={{
-          height: "5vh",
-          borderRadius: "10px",
-        }}
+        className="top-box-content"
       >
         <input type="text" id='username' />
         <input type="text" id='password' />
+        <Button
+          type="primary"
+          icon={<LeftOutlined />}
+          onClick={() => swapButtons()}
+          style={{
+            borderRadius: "10px",
+          }}
+        >
+          toggle
+        </Button>
+        <div>{swapButtons()}</div>
       </div>
-      <Button
-        type="primary"
-        icon={<LeftOutlined />}
-        onClick={() => swapButtons()}
-        style={{
-          borderRadius: "10px",
-        }}
-      >
-        toggle
-      </Button>
-      <div>{swapButtons()}</div>
     </div>
   );
 };

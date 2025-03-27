@@ -1,5 +1,4 @@
-.chat-div {
-}
+.chat-div {}
 
 body {
   background-color: #33343d;
@@ -29,4 +28,17 @@ body {
   backdrop-filter: blur(10px);
 
   opacity: 0.85;
+}
+
+h2 {
+  color: #33343d;
+  margin-left: 2px;
+}
+
+.top-box-content {
+  background-color: #7B7D93;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 2vh;
+  height: 12vh;
 }

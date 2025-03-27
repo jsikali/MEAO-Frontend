@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Row, Col, Divider, ConfigProvider, Button } from "antd";
 import './App.css';
-import PrivateChatBox from './PrivateChatBox.jsx';
+import { Row, Col, Divider, ConfigProvider, Button } from "antd";
 import Login from './LoginSignup.jsx';
+import PrivateChatBox from './PrivateChatBox.jsx';
+import PublicChatBox from './PublicChatBox.jsx';
+import Settings from './Settings.jsx';
+import React, { useState } from "react";
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -25,7 +27,7 @@ function App() {
       }}>
         <Row justify="space-around" style={{
           width: '100vw',
-          height: '20vh'
+          height: '24vh'
         }}>
           <Col span={7} style={{
           }}>
@@ -44,13 +46,18 @@ function App() {
             =^-.-^=
           </Col>
           <Col span={7} style={{}}>
-            settings
+          <Settings
+              setIsLoggedIn={setisLoggedIn}
+              getIsLoggedIn={getIsLoggedIn}>
+            </Settings>
           </Col>
         </Row>
 
-        <Divider orientation="left" plain style={{
+        <div style={{
+          width: '100vw',
+          height: '3vh',
         }}>
-        </Divider>
+        </div>
 
         <Row
           justify="space-around"
@@ -78,7 +85,7 @@ function App() {
             </PrivateChatBox>
           </Col>
           <Col span={7} className="chat-div" id="all">
-            <PrivateChatBox></PrivateChatBox>
+            <PublicChatBox></PublicChatBox>
           </Col>
         </Row>
       </div>
