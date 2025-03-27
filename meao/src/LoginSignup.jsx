@@ -1,5 +1,6 @@
 //import { useState } from "react";
 import { LeftOutlined } from "@ant-design/icons";
+<<<<<<< HEAD:meao/src/LoginSignup.jsx
 import { Button } from "antd";
 import SignUpButton from "./SignUpButton.jsx"
 import LoginButton from "./LoginButton.jsx"
@@ -12,6 +13,20 @@ const LoginSignup = () => {
   const swapButtons = () => {
     toggle = !toggle;
     console.log("swapping to ", toggle);
+=======
+import { useState } from 'react';
+
+const Login = ({ setIsLoggedIn, getIsLoggedIn }) => {
+  //const { token } = theme.useToken();
+
+  const sendLoginDetails = (user, pass) => {
+    console.log("actually handle this without leaking details lol");
+    //for the sake of being really funny
+    console.log(
+      `omg the username ${user} and password ${pass} may or may not work!!`
+    );
+    setIsLoggedIn(!getIsLoggedIn()); //just toggle for now
+>>>>>>> 61c810dfccacfb1b56854b5573bece9f848fe53b:meao/src/Login.jsx
   };
 
   const containerStyle = {
@@ -31,7 +46,11 @@ const LoginSignup = () => {
           height: "3vh",
         }}
       >
+<<<<<<< HEAD:meao/src/LoginSignup.jsx
         {toggle ? (
+=======
+        {getIsLoggedIn() ? (
+>>>>>>> 61c810dfccacfb1b56854b5573bece9f848fe53b:meao/src/Login.jsx
           <h2
             style={{
               color: "#33343d",
@@ -60,8 +79,13 @@ const LoginSignup = () => {
           borderRadius: "10px",
         }}
       >
+<<<<<<< HEAD:meao/src/LoginSignup.jsx
         <input type="text" id="username" />
         <input type="text" id="password" />
+=======
+        <input type="text" id='username' />
+        <input type="text" id='password' />
+>>>>>>> 61c810dfccacfb1b56854b5573bece9f848fe53b:meao/src/Login.jsx
       </div>
       <Button
         type="primary"

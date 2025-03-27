@@ -5,7 +5,8 @@ const PrivateChatBox = () => {
         <div style={{
             padding: '10px'
         }}>
-            this is where messages will go
+            {/* axios get the messages in thread ID(passed in from box) */}
+            this is where messages will go 
         </div>
     );
 };
