@@ -60,7 +60,7 @@ const PublicChatBox = ({ getIsLoggedIn }) => {
                     <div style={{ padding: '10px' }}>
                         {messages.slice().reverse().map((msg, index) => (
                             <div key={index} style={{ backgroundColor: 'white',
-                                padding: '5px',
+                                padding: '5px 10px',
                                 margin: '5px',
                                 borderRadius: '5px'
                              }}>
@@ -80,7 +80,10 @@ const PublicChatBox = ({ getIsLoggedIn }) => {
                         {/* Empty div to help scroll to bottom */}
                         <div ref={messagesEndRef}></div>
                         {/* have the input for sending */}
-                        <input type="text" id='publicchat' />
+                        <input type="text" id='publicchat' style={{
+                            margin: '5px',
+                            width: '75%'
+                        }} />
                         <MessageSendButton
                             chatBoxID='publicchat'
                             getIsLoggedIn={getIsLoggedIn}>

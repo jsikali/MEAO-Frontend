@@ -23,12 +23,7 @@ const Settings = ({ setIsLoggedIn }) => {
                 <h2>settings</h2>
             </div>
             <div className="top-box-content">
-                <Button type="primary" onClick={() => setIsLoggedIn(true)}>
-                    login demo
-                </Button>
-                <Button type="primary" onClick={() => setIsLoggedIn(false)}>
-                    logout demo
-                </Button>
+                to be added
             </div>
         </div>
     );
