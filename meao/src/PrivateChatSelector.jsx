@@ -3,10 +3,6 @@ import { Button } from 'antd';
 
 const PrivateChatSelector = ({ setIsSelectingChat }) => {
     let content = [];
-<<<<<<< HEAD
-
-=======
->>>>>>> 61c810dfccacfb1b56854b5573bece9f848fe53b
 //   axios get all message ids
 // axios get message name/recipient for each id
     for (let i = 1; i <= 30; i++) {
