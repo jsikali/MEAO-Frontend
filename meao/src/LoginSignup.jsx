@@ -17,12 +17,14 @@ const Login = ({ setIsLoggedIn, getIsLoggedIn, switchToggle, getToggle }) => {
   };
 
   function ToggleButton(){
-    console.log("hi i was called");
-    if(getIsLoggedIn())
+    
+    if(getToggle())
     {
+      console.log("show login button");
       return <LoginButton></LoginButton>;
     }else
     {
+      console.log("show sign up button");
       return <SignUpButton></SignUpButton>;
     }
   }
