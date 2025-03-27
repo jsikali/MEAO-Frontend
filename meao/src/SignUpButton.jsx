@@ -9,7 +9,7 @@ const sendSignUpDetails = (user, pass) => {
 
     axios({
       method: 'post',
-      url: 'https://137.112.221.75:5000/signup',
+      url: 'http://137.112.221.75:5000/signup',
       data: {
         username: user,
         password: pass
