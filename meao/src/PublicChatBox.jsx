@@ -1,28 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { Button, /*theme*/ } from 'antd';
-import { LeftOutlined } from '@ant-design/icons';
 import Messages from './Messages.jsx'
 import axios from 'axios';
-import SendMessage from './MessageSendButton.jsx'
 import MessageSendButton from './MessageSendButton.jsx';
 
-const PublicChatBox = () => {
-
-    const [time, setTime] = useState(Date.now());
+const PublicChatBox = ({ getIsLoggedIn }) => {
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        const interval = setInterval(() => setTime(Date.now()), 1000);
-        return () => {
-            clearInterval(interval);
+        const fetchMessages = () => {
+            axios
+                .get("http://137.112.221.75:5000/messages/public")
+                .then((res) => {
+                    setMessages(res.data.messages);
+                })
+                .catch((err) => {
+                    console.error("coudldn't get messages:", err);
+                });
         };
-    }, []);
+
+        fetchMessages();
+        const interval = setInterval(fetchMessages, 1000);
+        return () => clearInterval(interval);
+    });
 
     const messageJSON = () => {
         console.log("getting messages");
         axios({
             method: 'get',
-            url: 'http://137.112.221.75:5000/messages/public',
-            //headers: { Authorization: `Bearer ${accessToken}`}
+            url: 'http://137.112.221.75:5000/messages/public'
         }).then(res => res.data);
     }
 
@@ -58,19 +64,25 @@ const PublicChatBox = () => {
                     <div style={{
                         padding: '10px'
                     }}>
-                        {/* have the messages */}
-                        {/* <Messages
-                            messagesJSON={messageJSON()}
-                        ></Messages> */}
-                        messages here when passing user access token is figured out
+
+                        {messages.map((msg, index) => (
+                            <div key={index} style={{}}>
+                                <div style={{}}>
+                                    <span style={{}}>{msg.sender_id}</span>
+                                    <span style={{}}>{new Date(msg.timestamp).toLocaleString()}</span>
+                                </div>
+                                <p style={{}}>{msg.content}</p>
+                            </div>
+                        ))}
                         {/* have the input for sending */}
                         <input type="text" id='publicchat' />
-                        <MessageSendButton></MessageSendButton>
+                        <MessageSendButton
+                            chatBoxID='publicchat'
+                            getIsLoggedIn={getIsLoggedIn}></MessageSendButton>
                     </div>
                 </div>
             </div>
         </div>
     );
 };
-
 export default PublicChatBox;

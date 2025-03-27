@@ -93,7 +93,8 @@ function App() {
             </PrivateChatBox>
           </Col>
           <Col span={7} className="chat-div" id="all">
-            <PublicChatBox></PublicChatBox>
+            <PublicChatBox
+              getIsLoggedIn={getIsLoggedIn}></PublicChatBox>
           </Col>
         </Row>
       </div>

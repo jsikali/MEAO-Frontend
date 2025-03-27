@@ -15,9 +15,12 @@ const LoginButton = ({ setIsLoggedIn }) => {
         username: user,
         password: pass
       }
+    }).then(res => {
+      console.log(res.data.access_token)
+      setIsLoggedIn(res.data.access_token)
+    }).catch(err => {
+      console.log(err)
     })
-
-    setIsLoggedIn("key")
   };
 
   return (
