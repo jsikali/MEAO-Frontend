@@ -1,21 +1,17 @@
-//import React, { useState } from 'react';
-import { Button } from "antd";
+//import { useState } from "react";
 import { LeftOutlined } from "@ant-design/icons";
-//import { useState } from 'react';
+import { Button } from "antd";
+import SignUpButton from "./SignUpButton.jsx"
+import LoginButton from "./LoginButton.jsx"
 
-const Login = () => {
-  //const { token } = theme.useToken();
-  //const [isSelectingChat, setIsSelectingChat] = useState(true);
-  var loggedIn = false;
+const LoginSignup = () => {
+  var toggle = false;
 
-  const sendLoginDetails = (user, pass) => {
-    console.log("actually handle this without leaking details lol");
-    //for the sake of being really funny
-    console.log(
-      `omg the username ${user} and password ${pass} may or may not work!!`
-    );
-    loggedIn = !loggedIn; //just toggle for now
-    console.log(loggedIn)
+  //const [isSelectingChat] = useState(true);
+
+  const swapButtons = () => {
+    toggle = !toggle;
+    console.log("swapping to ", toggle);
   };
 
   const containerStyle = {
@@ -35,7 +31,7 @@ const Login = () => {
           height: "3vh",
         }}
       >
-        {loggedIn ? (
+        {toggle ? (
           <h2
             style={{
               color: "#33343d",
@@ -47,13 +43,12 @@ const Login = () => {
         ) : (
           <>
             <div
-              id="username"
               style={{
                 color: "#33343d",
                 marginLeft: "8px",
               }}
             >
-              login!!
+              login/signup
             </div>
           </>
         )}
@@ -65,24 +60,22 @@ const Login = () => {
           borderRadius: "10px",
         }}
       >
-        <input type="text" id='username'/>
-        <input type="text" id='password'/>
+        <input type="text" id="username" />
+        <input type="text" id="password" />
       </div>
       <Button
         type="primary"
         icon={<LeftOutlined />}
-        onClick={() =>
-          sendLoginDetails(
-            document.getElementById("username").value,
-            document.getElementById("password").value
-          )
-        }
+        onClick={() => swapButtons()}
         style={{
           borderRadius: "10px",
         }}
-      >Login!</Button>
+      >
+        toggle
+      </Button>
+      { toggle? <LoginButton></LoginButton> : <SignUpButton></SignUpButton>}
     </div>
   );
 };
 
-export default Login;
+export default LoginSignup;

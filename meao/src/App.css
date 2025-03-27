@@ -1,5 +1,32 @@
-.chat-div {}
+.chat-div {
+}
 
 body {
   background-color: #33343d;
+}
+
+.login-cover {
+  background-color: #c2c6e8;
+
+  z-index: 100;
+
+  position: absolute;
+
+  text-align: center;
+
+  border-radius: 16px;
+
+  height: 100%;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  backdrop-filter: blur(10px);
+
+  opacity: 0.85;
 }
