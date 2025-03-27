@@ -9,7 +9,7 @@ const sendSignUpDetails = (user, pass) => {
 
     axios({
       method: 'post',
-      url: 'http://137.112.221.75:5000/signup',
+      url: 'https://137.112.221.75:5000/signup',
       data: {
         username: user,
         password: pass
@@ -21,7 +21,6 @@ const LoginButton = () => {
   return (
     <Button
       type="primary"
-      icon={<LeftOutlined />}
       onClick={() =>
         sendSignUpDetails(
           document.getElementById("username").value,

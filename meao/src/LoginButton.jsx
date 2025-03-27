@@ -2,26 +2,27 @@ import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 
-const sendLoginDetails = (user, pass) => {
+const LoginButton = ({ setIsLoggedIn }) => {
+  const sendLoginDetails = (user, pass) => {
     console.log(
       `logging in with user: ${user} and pass: ${pass}`
     );
 
     axios({
       method: 'post',
-      url: 'http://137.112.221.75:5000/login',
+      url: 'https://137.112.221.75:5000/login',
       data: {
         username: user,
         password: pass
       }
     })
+
+    setIsLoggedIn("key")
   };
 
-const LoginButton = () => {
   return (
     <Button
       type="primary"
-      icon={<LeftOutlined />}
       onClick={() =>
         sendLoginDetails(
           document.getElementById("username").value,

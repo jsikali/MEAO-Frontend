@@ -1,6 +1,5 @@
 //import React, { useState } from 'react';
 import { Button } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
 import SignUpButton from "./SignUpButton.jsx"
 import LoginButton from "./LoginButton.jsx"
 //import { useState } from 'react';
@@ -12,18 +11,16 @@ const Login = ({ setIsLoggedIn, getIsLoggedIn, switchToggle, getToggle }) => {
   console.log("the logged in val is " + getIsLoggedIn());
 
   const swapButtons = () => {
-    switchToggle((toggle)=> !toggle);
-    setIsLoggedIn((loggedIn)=> !loggedIn);
+    switchToggle((toggle) => !toggle);
   };
 
-  function ToggleButton(){
-    
-    if(getToggle())
-    {
+  function ToggleButton() {
+
+    if (getToggle()) {
       console.log("show login button");
-      return <LoginButton></LoginButton>;
-    }else
-    {
+      return <LoginButton
+        setIsLoggedIn={setIsLoggedIn}></LoginButton>
+    } else {
       console.log("show sign up button");
       return <SignUpButton></SignUpButton>;
     }
@@ -71,13 +68,12 @@ const Login = ({ setIsLoggedIn, getIsLoggedIn, switchToggle, getToggle }) => {
         <input type="text" id='password' />
         <Button
           type="primary"
-          icon={<LeftOutlined />}
           onClick={() => swapButtons()}
           style={{
             borderRadius: "10px",
           }}
         >
-          toggle
+          toggle signin/login
         </Button>
         <ToggleButton></ToggleButton>
       </div>
