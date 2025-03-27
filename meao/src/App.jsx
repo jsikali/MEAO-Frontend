@@ -8,9 +8,16 @@ import React, { useState } from "react";
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  const getIsLoggedIn = () => {
-    return isLoggedIn
-  }
+  const [toggle, switchToggle] = useState(false);
+  // const getIsLoggedIn = () => {
+  //   return isLoggedIn
+  // }
+  // const getToggle = () => {
+  //   switchToggle((toggle)=> !toggle);
+  //   return toggle;
+  // }
+  const getIsLoggedIn = () => isLoggedIn;
+  const getToggle = () => toggle;
 
   return (
     <ConfigProvider
@@ -33,7 +40,9 @@ function App() {
           }}>
             <Login
               setIsLoggedIn={setisLoggedIn}
-              getIsLoggedIn={getIsLoggedIn}>
+              getIsLoggedIn={getIsLoggedIn}
+              switchToggle={switchToggle}
+              getToggle={getToggle}>
             </Login>
           </Col>
           <Col

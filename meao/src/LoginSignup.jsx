@@ -5,19 +5,27 @@ import SignUpButton from "./SignUpButton.jsx"
 import LoginButton from "./LoginButton.jsx"
 //import { useState } from 'react';
 
-const Login = ({ setIsLoggedIn, getIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn, getIsLoggedIn, switchToggle, getToggle }) => {
   //const { token } = theme.useToken();
-  var toggle = false;
+  //const [toggle, switchToggle] = useState(false);
+  console.log("the toggle val is " + getToggle());
+  console.log("the logged in val is " + getIsLoggedIn());
 
   const swapButtons = () => {
-    toggle = !toggle;
-    console.log("swapping to ", toggle);
-    if (toggle) {
-      return <LoginButton></LoginButton>
-    } else {
-      return <SignUpButton></SignUpButton>
-    }
+    switchToggle((toggle)=> !toggle);
+    setIsLoggedIn((loggedIn)=> !loggedIn);
   };
+
+  function ToggleButton(){
+    console.log("hi i was called");
+    if(getIsLoggedIn())
+    {
+      return <LoginButton></LoginButton>;
+    }else
+    {
+      return <SignUpButton></SignUpButton>;
+    }
+  }
 
   const containerStyle = {
     height: "100%",
@@ -70,7 +78,7 @@ const Login = ({ setIsLoggedIn, getIsLoggedIn }) => {
         >
           toggle
         </Button>
-        <div>{swapButtons()}</div>
+        <ToggleButton></ToggleButton>
       </div>
     </div>
   );
