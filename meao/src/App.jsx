@@ -4,6 +4,7 @@ import './App.css';
 import PrivateChatBox from './PrivateChatBox.jsx';
 import axios from 'axios';
 import Login from './Login.jsx';
+import React, { useState } from 'react';
 
 const testAxios = () => {
   axios.get('http://137.112.221.75:5000/')
@@ -15,6 +16,11 @@ const testAxios = () => {
 }
 
 function App() {
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const getIsLoggedIn = () => {
+    return isLoggedIn
+  }
+
   return (
     <ConfigProvider
       theme={{
@@ -28,16 +34,16 @@ function App() {
         width: '100vw',
         align: 'left'
       }}>
-        <Row justify="space-evenly" style={{
+        <Row justify="space-around" style={{
           width: '100vw',
           height: '20vh'
         }}>
           <Col span={7} style={{
           }}>
-            <Button type="primary" onClick={testAxios}>
-              axios.get
-            </Button>
-          <Login></Login>
+            <Login
+              setIsLoggedIn={setisLoggedIn}
+              getIsLoggedIn={getIsLoggedIn}>
+            </Login>
           </Col>
           <Col span={7} style={{
             fontSize: '7vw',
@@ -51,7 +57,8 @@ function App() {
           </Col>
         </Row>
 
-        <Divider orientation="left" plain>
+        <Divider orientation="left" plain style={{
+        }}>
         </Divider>
 
         <Row justify="space-around" style={{
@@ -59,10 +66,20 @@ function App() {
           height: '70vh'
         }}>
           <Col span={7} className="chat-div" id="one-to-one">
+            {!isLoggedIn && <div className="login-cover">
+              <h1>
+                log in to see private chats!
+              </h1>
+            </div>}
             <PrivateChatBox>
             </PrivateChatBox>
           </Col>
           <Col span={7} className="chat-div" id="one-to-many">
+            {!isLoggedIn && <div className="login-cover">
+              <h1>
+                log in to see group chats!
+              </h1>
+            </div>}
             <PrivateChatBox>
             </PrivateChatBox>
           </Col>

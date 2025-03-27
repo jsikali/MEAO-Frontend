@@ -9,7 +9,7 @@ const PrivateChatBox = () => {
     const [isSelectingChat, setIsSelectingChat] = useState(true);
 
     const swapBoxContent = (isSelectingChat) => {
-        console.log("swapping to ", isSelectingChat)
+        // console.log("swapping to ", isSelectingChat)
         if (isSelectingChat) {
             return <PrivateChatSelector
                 setIsSelectingChat={setIsSelectingChat} />

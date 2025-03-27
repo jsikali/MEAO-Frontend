@@ -1,12 +1,10 @@
 //import React, { useState } from 'react';
 import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
-//import { useState } from 'react';
+import { useState } from 'react';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn, getIsLoggedIn }) => {
   //const { token } = theme.useToken();
-  //const [isSelectingChat, setIsSelectingChat] = useState(true);
-  var loggedIn = false;
 
   const sendLoginDetails = (user, pass) => {
     console.log("actually handle this without leaking details lol");
@@ -14,8 +12,7 @@ const Login = () => {
     console.log(
       `omg the username ${user} and password ${pass} may or may not work!!`
     );
-    loggedIn = !loggedIn; //just toggle for now
-    console.log(loggedIn)
+    setIsLoggedIn(!getIsLoggedIn()); //just toggle for now
   };
 
   const containerStyle = {
@@ -35,7 +32,7 @@ const Login = () => {
           height: "3vh",
         }}
       >
-        {loggedIn ? (
+        {getIsLoggedIn() ? (
           <h2
             style={{
               color: "#33343d",
@@ -65,8 +62,8 @@ const Login = () => {
           borderRadius: "10px",
         }}
       >
-        <input type="text" id='username'/>
-        <input type="text" id='password'/>
+        <input type="text" id='username' />
+        <input type="text" id='password' />
       </div>
       <Button
         type="primary"
