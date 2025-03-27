@@ -6,7 +6,7 @@ const MessageSendButton = ({ chatBoxID, getIsLoggedIn }) => {
 
   const sendMessage = () => {
     console.log(
-      `sending message ${document.getElementById("publicchat").value} for ${chatBoxID}`
+      `sending message "${document.getElementById('publicchat').value}" for: ${chatBoxID}`
     );
 
 
@@ -17,7 +17,7 @@ const MessageSendButton = ({ chatBoxID, getIsLoggedIn }) => {
           url: 'http://137.112.221.75:5000/message/public',
           headers: { Authorization: `Bearer ${getIsLoggedIn()}` },
           data: {
-            content: document.getElementById("publicchat").value
+            content: document.getElementById('publicchat').value
           }
         })
           .then(() => {
