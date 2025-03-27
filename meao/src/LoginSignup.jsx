@@ -54,7 +54,6 @@ const Login = ({ setIsLoggedIn, getIsLoggedIn, switchToggle, getToggle }) => {
           <>
             <h2>login/sign up!!</h2>
             <div
-              id="username"
               style={{
                 color: "#33343d",
                 marginLeft: "8px",

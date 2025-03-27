@@ -2,10 +2,10 @@ import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 
-const sendLoginDetails = (user, pass) => {
-    console.log(
-      `signing up`
-    );
+const sendSignUpDetails = (user, pass) => {
+  console.log(
+    `signing up with user: ${user} and pass: ${pass}`
+  );
 
     axios({
       method: 'post',
@@ -23,7 +23,7 @@ const LoginButton = () => {
       type="primary"
       icon={<LeftOutlined />}
       onClick={() =>
-        sendLoginDetails(
+        sendSignUpDetails(
           document.getElementById("username").value,
           document.getElementById("password").value
         )

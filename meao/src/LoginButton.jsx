@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const sendLoginDetails = (user, pass) => {
     console.log(
-      `logging in with user: {user} and pass: {pass}`
+      `logging in with user: ${user} and pass: ${pass}`
     );
 
     axios({
