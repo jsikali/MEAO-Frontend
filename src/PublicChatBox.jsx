@@ -41,6 +41,12 @@ const PublicChatBox = ({ getToken }) => {
     boxSizing: "border-box",
   };
 
+  const msgRedact = (msg) => {
+    console.log("redacting a message");
+    msg.content = "[REDACTED]" //do some eqv to this that actually works lol
+    alert("message will be redacted!!");
+  };
+
   return (
     <div style={containerStyle}>
       <div style={{ marginTop: "2vh", height: "5vh" }}>
@@ -114,7 +120,7 @@ const PublicChatBox = ({ getToken }) => {
                 { getToken().length > 0 && //replace this with an actual check beyond being logged in
                   <Button
                     type="primary"
-                    onClick={() => console.log("update this message's contents w/[REDACTED]")}
+                    onClick={() => msgRedact(msg)}
                     style={{
                       borderRadius: "10px",
                     }}
