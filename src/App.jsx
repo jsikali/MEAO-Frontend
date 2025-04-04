@@ -57,7 +57,7 @@ function App() {
           </Col>
           <Col span={7} style={{}}>
             <Settings
-              setIsLoggedIn={setToken}>
+              getToken={getToken}>
             </Settings>
           </Col>
         </Row>
