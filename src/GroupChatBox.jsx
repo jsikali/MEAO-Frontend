@@ -6,17 +6,20 @@ import GroupChatBody from './GroupChatBody.jsx'
 
 const GroupChatBox = ({ getToken }) => {
     //const { token } = theme.useToken();
-    const [isSelectingChat, setIsSelectingChat] = useState(true);
+    const [groupID, setGroupID] = useState(-1);
 
-    const swapBoxContent = (isSelectingChat) => {
+    const swapBoxContent = (groupID) => {
         // console.log("swapping to ", isSelectingChat)
-        if (isSelectingChat) {
+        if (groupID == -1) {
             return <GroupChatSelector
-                getToken={getToken} 
-                setIsSelectingChat={ setIsSelectingChat} />
+                getToken={getToken}
+                setGroupID={setGroupID}
+                token={getToken()} />
         }
         else {
-            return <GroupChatBody />
+            return <GroupChatBody
+                token={getToken()}
+                groupID={groupID} />
         }
     };
 
@@ -35,10 +38,10 @@ const GroupChatBox = ({ getToken }) => {
                 marginTop: '2vh',
                 height: '5vh',
             }}>
-                {isSelectingChat ? <h2>select a group chat :3</h2> : <Button
+                {groupID == -1 ? <h2>select a group chat :3</h2> : <Button
                     type="primary"
                     icon={<LeftOutlined />}
-                    onClick={() => setIsSelectingChat(true)}
+                    onClick={() => setGroupID(-1)}
                     style={{
                         borderRadius: '10px'
                     }}>
@@ -57,7 +60,7 @@ const GroupChatBox = ({ getToken }) => {
                     minHeight: '100%',
                     overflow: 'hidden'
                 }}>
-                    {swapBoxContent(isSelectingChat)}
+                    {swapBoxContent(groupID)}
                 </div>
             </div>
         </div>

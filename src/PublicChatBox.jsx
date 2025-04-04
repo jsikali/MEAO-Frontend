@@ -21,7 +21,7 @@ const PublicChatBox = ({ getToken }) => {
         };
 
         fetchMessages();
-        const interval = setInterval(fetchMessages, 1000000);
+        const interval = setInterval(fetchMessages, 1000);
         return () => clearInterval(interval);
     }, []);
 
@@ -86,7 +86,8 @@ const PublicChatBox = ({ getToken }) => {
                         }} />
                         <MessageSendButton
                             chatBoxID='publicchat'
-                            getToken={getToken}>
+                            token={getToken()}
+                            groupID={0}>
                         </MessageSendButton>
                     </div>
                 </div>

@@ -2,27 +2,31 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'antd';
 
-const GroupChatSelector = ({ getToken, setIsSelectingChat }) => {
+const GroupChatSelector = ({ getToken, setGroupID, token }) => {
     let content = [];
 
     const [groups, setGroups] = useState([]);
 
-    const fetchGroups = () => {
-        if (getToken()) {
-            axios({
-                method: 'get',
-                url: 'http://137.112.221.75:5000/groups',
-                headers: { Authorization: `Bearer ${getToken()}` },
-            })
-                .then((res) => {
-                    setGroups(res.data.groups);
+    useEffect(() => {
+        const fetchGroups = () => {
+            if (token) {
+                axios({
+                    method: 'get',
+                    url: 'http://137.112.221.75:5000/groups',
+                    headers: { Authorization: `Bearer ${token}` },
                 })
-                .catch((err) => {
-                    console.error("couldn't get groups:", err);
-                });
-        }
-    };
-    fetchGroups();
+                    .then((res) => {
+                        setGroups(res.data.groups);
+                    })
+                    .catch((err) => {
+                        console.error("couldn't get groups:", err);
+                    });
+            }
+        };
+        fetchGroups();
+        const interval = setInterval(fetchGroups, 3000);
+        return () => clearInterval(interval);
+    }, [token]);
 
     //   axios get all message ids
     // axios get message name/recipient for each id
@@ -30,7 +34,7 @@ const GroupChatSelector = ({ getToken, setIsSelectingChat }) => {
         const item = <Button
             type="primary"
             key={"chatSelectorButton" + i}
-            onClick={() => setIsSelectingChat(false)} //pass back id of dm
+            onClick={() => setGroupID(groups[i].group_id)} //pass back id of dm
             style={{
                 borderRadius: 0,
                 width: '100%'

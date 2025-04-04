@@ -2,20 +2,18 @@ import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 
-const MessageSendButton = ({ chatBoxID, getToken }) => {
+const MessageSendButton = ({ chatBoxID, token, groupID }) => {
 
   const sendMessage = () => {
     console.log(
-      `sending message "${document.getElementById('publicchat').value}" for: ${chatBoxID}`
+      `sending message "${document.getElementById(chatBoxID).value}" for: ${chatBoxID}`
     );
-
-
     switch (chatBoxID) {
       case 'publicchat':
         axios({
           method: 'post',
           url: 'http://137.112.221.75:5000/message/public',
-          headers: { Authorization: `Bearer ${getToken()}` },
+          headers: { Authorization: `Bearer ${token}` },
           data: {
             content: document.getElementById('publicchat').value
           }
@@ -26,7 +24,24 @@ const MessageSendButton = ({ chatBoxID, getToken }) => {
           .catch((err) => {
             console.error("message send failed:", err);
           });
-
+          break;
+      case 'groupchat':
+        axios({
+          method: 'post',
+          url: 'http://137.112.221.75:5000/message/group',
+          headers: { Authorization: `Bearer ${token}` },
+          data: {
+            group_id: groupID, 
+            content: document.getElementById('groupchat').value
+          }
+        })
+          .then(() => {
+            document.getElementById(chatBoxID).value = "";
+          })
+          .catch((err) => {
+            console.error("message send failed:", err);
+          });
+          break;
       default:
         console.log(`bad id, it's ${chatBoxID}`);
         break;
