@@ -35,7 +35,7 @@ const GroupChatBox = ({ getToken }) => {
                 marginTop: '2vh',
                 height: '5vh',
             }}>
-                {isSelectingChat ? <h2>select a chat :3</h2> : <Button
+                {isSelectingChat ? <h2>select a group chat :3</h2> : <Button
                     type="primary"
                     icon={<LeftOutlined />}
                     onClick={() => setIsSelectingChat(true)}

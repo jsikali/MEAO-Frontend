@@ -7,31 +7,26 @@ const GroupChatSelector = ({ getToken, setIsSelectingChat }) => {
 
     const [groups, setGroups] = useState([]);
 
-    useEffect(() => {
-        const fetchGroups = () => {
-            if (getToken()) {
-                axios({
-                    method: 'get',
-                    url: 'http://137.112.221.75:5000/groups',
-                    headers: { Authorization: `Bearer ${getToken()}` },
+    const fetchGroups = () => {
+        if (getToken()) {
+            axios({
+                method: 'get',
+                url: 'http://137.112.221.75:5000/groups',
+                headers: { Authorization: `Bearer ${getToken()}` },
+            })
+                .then((res) => {
+                    setGroups(res.data.groups);
                 })
-                    .then((res) => {
-                        setGroups(res.data.groups);
-                    })
-                    .catch((err) => {
-                        console.error("couldn't get groups:", err);
-                    });
-            }
-        };
-    
-        fetchGroups();
-        const interval = setInterval(fetchGroups, 10000);
-        return () => clearInterval(interval);
-    }, []);
+                .catch((err) => {
+                    console.error("couldn't get groups:", err);
+                });
+        }
+    };
+    fetchGroups();
 
     //   axios get all message ids
     // axios get message name/recipient for each id
-    for (let i = 1; i <= groups.length; i++) {
+    for (let i = 0; i < groups.length; i++) {
         const item = <Button
             type="primary"
             key={"chatSelectorButton" + i}
@@ -40,7 +35,7 @@ const GroupChatSelector = ({ getToken, setIsSelectingChat }) => {
                 borderRadius: 0,
                 width: '100%'
             }}>
-            groups[i].group_name
+            {groups[i].group_name}
         </Button>
         content.push(item);
     }
