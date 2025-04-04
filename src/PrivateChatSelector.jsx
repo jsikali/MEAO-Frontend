@@ -15,8 +15,7 @@ const PrivateChatSelector = ({ getToken, setIsSelectingChat }) => {
             if (token) {
                 axios({
                     method: 'get',
-                    url: 'http://137.112.221.75:5000/messages/direct' 
-                        + '?recipient_id=' + '67ef7a9bdfd7ebaab0b7866b', //everyone messages AwesomeGuy7
+                    url: 'http://137.112.221.75:5000/messages/direct',
                     headers: { Authorization: `Bearer ${token}` },
                 })
                     .then((res) => {
