@@ -1,36 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'antd';
+import PrivateChatBody from './PrivateChatBody';
 
 const PrivateChatSelector = ({ getToken, setIsSelectingChat }) => {
     let content = [];
-    console.log(`the token: ${getToken()}`);
-    let uid = axios({
-        method: 'get',
-        url: 'http://137.112.221.75:5000/profile',
-        headers: { Authorization: `Bearer ${getToken()}` }
-    }).then(function (response) {
-        console.log(response.data.user._id); //ok so if i dont console log it only saves as an object which is bad but whatever
-    })
-    //let params = new URLSearchParams([['recipient_id', uid]]);
-
-    //console.log(`uid: ${uid}`);
+    let token = getToken();
+    console.log(`priv chat sel token: ${token}`)
 
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
-        console.log("hi this is the use effect");
         const fetchDMs = () => {
-            if (getToken()) {
+            if (token) {
                 axios({
                     method: 'get',
-                    url: 'http://137.112.221.75:5000/messages/direct',
-                    headers: { Authorization: `Bearer ${getToken()}` },
-                    params: { recipent_id: uid },
+                    url: 'http://137.112.221.75:5000/messages/direct' 
+                        + '?recipient_id=' + '67ef7a9bdfd7ebaab0b7866b', //everyone messages AwesomeGuy7
+                    headers: { Authorization: `Bearer ${token}` },
                 })
                     .then((res) => {
-                        console.log("hi use effect found dms");
-                        console.log(res);
+                        console.log(`the response from privchatsel: ${res}`);
                         setGroups(res.data.groups);
                     })
                     .catch((err) => {
@@ -38,15 +28,14 @@ const PrivateChatSelector = ({ getToken, setIsSelectingChat }) => {
                     });
             }
         };
-    
         fetchDMs();
-        const interval = setInterval(fetchDMs, 1000);
+        const interval = setInterval(fetchDMs, 3000);
         return () => clearInterval(interval);
-    }, []);
+    }, [token]);
 
     //   axios get all message ids
     // axios get message name/recipient for each id
-    for (let i = 1; i <= groups.length; i++) {
+    for (let i = 0; i < groups.length; i++) {
         const item = <Button
             type="primary"
             key={"chatSelectorButton" + i}
@@ -55,7 +44,7 @@ const PrivateChatSelector = ({ getToken, setIsSelectingChat }) => {
                 borderRadius: 0,
                 width: '100%'
             }}>
-            groups[i].group_name
+            {groups[i].group_name}
         </Button>
         content.push(item);
     }
