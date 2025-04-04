@@ -21,7 +21,7 @@ const PublicChatBox = ({ getToken }) => {
         };
 
         fetchMessages();
-        const interval = setInterval(fetchMessages, 1000);
+        const interval = setInterval(fetchMessages, 1000000);
         return () => clearInterval(interval);
     }, []);
 

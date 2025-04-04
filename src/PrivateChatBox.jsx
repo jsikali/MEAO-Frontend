@@ -11,6 +11,7 @@ const PrivateChatBox = ({ getToken }) => {
     const swapBoxContent = (isSelectingChat) => {
         // console.log("swapping to ", isSelectingChat)
         if (isSelectingChat) {
+            console.log("select priv chat");
             return <PrivateChatSelector
                 getToken={getToken} 
                 setIsSelectingChat={ setIsSelectingChat} />
