@@ -6,18 +6,20 @@ import PrivateChatBody from './PrivateChatBody.jsx'
 
 const PrivateChatBox = ({ getToken }) => {
     //const { token } = theme.useToken();
-    const [isSelectingChat, setIsSelectingChat] = useState(true);
+    const [recipientID, setRecipientID] = useState(-1);
 
-    const swapBoxContent = (isSelectingChat) => {
+    const swapBoxContent = (recipientID) => {
         // console.log("swapping to ", isSelectingChat)
-        if (isSelectingChat) {
+        if (recipientID == -1) {
             console.log("select priv chat");
             return <PrivateChatSelector
-                getToken={getToken} 
-                setIsSelectingChat={ setIsSelectingChat} />
+                getToken={getToken}
+                setRecipientID={setRecipientID} />
         }
         else {
-            return <PrivateChatBody />
+            return <PrivateChatBody
+                token={getToken()}
+                recipientID={recipientID} />
         }
     };
 
@@ -36,10 +38,10 @@ const PrivateChatBox = ({ getToken }) => {
                 marginTop: '2vh',
                 height: '5vh',
             }}>
-                {isSelectingChat ? <h2>select a chat :3</h2> : <Button
+                {(recipientID == -1) ? <h2>select a chat :3</h2> : <Button
                     type="primary"
                     icon={<LeftOutlined />}
-                    onClick={() => setIsSelectingChat(true)}
+                    onClick={() => setRecipientID(-1)}
                     style={{
                         borderRadius: '10px'
                     }}>
@@ -58,7 +60,7 @@ const PrivateChatBox = ({ getToken }) => {
                     minHeight: '100%',
                     overflow: 'hidden'
                 }}>
-                    {swapBoxContent(isSelectingChat)}
+                    {swapBoxContent(recipientID)}
                 </div>
             </div>
         </div>

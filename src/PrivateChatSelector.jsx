@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'antd';
-import PrivateChatBody from './PrivateChatBody';
 
-const PrivateChatSelector = ({ getToken, setIsSelectingChat }) => {
+const PrivateChatSelector = ({ getToken, setRecipientID }) => {
     let content = [];
     let token = getToken();
     console.log(`priv chat sel token: ${token}`)
@@ -15,12 +14,12 @@ const PrivateChatSelector = ({ getToken, setIsSelectingChat }) => {
             if (token) {
                 axios({
                     method: 'get',
-                    url: 'http://137.112.221.75:5000/messages/direct',
+                    url: 'http://137.112.221.75:5000/dms',
                     headers: { Authorization: `Bearer ${token}` },
                 })
                     .then((res) => {
                         console.log(`the response from privchatsel: ${res}`);
-                        setGroups(res.data.groups);
+                        setGroups(res.data.dms);
                     })
                     .catch((err) => {
                         console.error("couldn't get DMs:", err);
@@ -38,12 +37,12 @@ const PrivateChatSelector = ({ getToken, setIsSelectingChat }) => {
         const item = <Button
             type="primary"
             key={"chatSelectorButton" + i}
-            onClick={() => setIsSelectingChat(false)} //pass back id of dm
+            onClick={() => setRecipientID(groups[i].recipient_id)} //pass back id of dm
             style={{
                 borderRadius: 0,
                 width: '100%'
             }}>
-            {groups[i].group_name}
+            {groups[i].recipient}
         </Button>
         content.push(item);
     }

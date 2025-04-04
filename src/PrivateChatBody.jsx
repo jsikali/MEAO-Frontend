@@ -4,14 +4,16 @@ import Messages from './Messages.jsx';
 import axios from 'axios';
 import MessageSendButton from './MessageSendButton.jsx';
 
-const PrivateChatBody = ({ getToken }) => {
+const PrivateChatBody = ({ token, recipientID }) => {
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null); // Ref for scrolling
 
     useEffect(() => {
         const fetchMessages = () => {
             axios
-                .get("http://137.112.221.75:5000/messages/public")
+                .get("http://137.112.221.75:5000/messages/direct/" + recipientID,
+                    { headers: { Authorization: `Bearer ${token}` } },
+                )
                 .then((res) => {
                     setMessages(res.data.messages);
                 })
@@ -21,9 +23,9 @@ const PrivateChatBody = ({ getToken }) => {
         };
 
         fetchMessages();
-        const interval = setInterval(fetchMessages, 10000);
+        const interval = setInterval(fetchMessages, 1000);
         return () => clearInterval(interval);
-    }, []);
+    }, [token]);
 
     // Scroll to bottom when messages update
     useEffect(() => {
@@ -58,7 +60,7 @@ const PrivateChatBody = ({ getToken }) => {
                     overflow: 'hidden'
                 }}>
                     <div style={{ padding: '10px' }}>
-                        {messages.slice().reverse().map((msg, index) => (
+                        {messages.slice().map((msg, index) => (
                             <div key={index} style={{ backgroundColor: 'white',
                                 padding: '5px 10px',
                                 margin: '5px',
@@ -86,7 +88,8 @@ const PrivateChatBody = ({ getToken }) => {
                         }} />
                         <MessageSendButton
                             chatBoxID='privatechat'
-                            getToken={getToken}>
+                            token={token}
+                            recipientID={recipientID}>
                         </MessageSendButton>
                     </div>
                 </div>
