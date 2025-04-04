@@ -5,18 +5,19 @@ import PrivateChatBox from './PrivateChatBox.jsx';
 import PublicChatBox from './PublicChatBox.jsx';
 import Settings from './Settings.jsx';
 import React, { useState } from "react";
+import GroupChatBox from './GroupChatBox.jsx';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState("");
   const [toggle, switchToggle] = useState(false);
-  // const getIsLoggedIn = () => {
+  // const getToken = () => {
   //   return isLoggedIn
   // }
   // const getToggle = () => {
   //   switchToggle((toggle)=> !toggle);
   //   return toggle;
   // }
-  const getIsLoggedIn = () => isLoggedIn;
+  const getToken = () => token;
   const getToggle = () => toggle;
 
   return (
@@ -39,8 +40,8 @@ function App() {
           <Col span={7} style={{
           }}>
             <Login
-              setIsLoggedIn={setIsLoggedIn}
-              getIsLoggedIn={getIsLoggedIn}
+              setToken={setToken}
+              getToken={getToken}
               switchToggle={switchToggle}
               getToggle={getToggle}>
             </Login>
@@ -56,7 +57,7 @@ function App() {
           </Col>
           <Col span={7} style={{}}>
             <Settings
-              setIsLoggedIn={setIsLoggedIn}>
+              setIsLoggedIn={setToken}>
             </Settings>
           </Col>
         </Row>
@@ -75,26 +76,24 @@ function App() {
           }}
         >
           <Col span={7} className="chat-div" id="one-to-one">
-            {!isLoggedIn && <div className="login-cover">
+            {!token && <div className="login-cover">
               <h1>
                 log in to see private chats!
               </h1>
             </div>}
-            <PrivateChatBox>
-            </PrivateChatBox>
+            <PrivateChatBox getToken={getToken} />
           </Col>
           <Col span={7} className="chat-div" id="one-to-many">
-            {!isLoggedIn && <div className="login-cover">
+            {!token && <div className="login-cover">
               <h1>
                 log in to see group chats!
               </h1>
             </div>}
-            <PrivateChatBox>
-            </PrivateChatBox>
+            <GroupChatBox getToken={getToken} />
           </Col>
           <Col span={7} className="chat-div" id="all">
             <PublicChatBox
-              getIsLoggedIn={getIsLoggedIn}></PublicChatBox>
+              getToken={getToken}></PublicChatBox>
           </Col>
         </Row>
       </div>

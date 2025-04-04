@@ -4,7 +4,7 @@ import Messages from './Messages.jsx';
 import axios from 'axios';
 import MessageSendButton from './MessageSendButton.jsx';
 
-const PublicChatBox = ({ getIsLoggedIn }) => {
+const PublicChatBox = ({ getToken }) => {
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null); // Ref for scrolling
 
@@ -67,7 +67,7 @@ const PublicChatBox = ({ getIsLoggedIn }) => {
                                 <div style={{}}>
                                     <span style={{
                                         color: '#33343d'
-                                    }}>{msg.sender_id} </span>
+                                    }}>{msg.sender_username} </span>
                                     <span style={{
                                         color: '#7B7D93'
                                     }}> {new Date(msg.timestamp).toLocaleString()}</span>
@@ -86,7 +86,7 @@ const PublicChatBox = ({ getIsLoggedIn }) => {
                         }} />
                         <MessageSendButton
                             chatBoxID='publicchat'
-                            getIsLoggedIn={getIsLoggedIn}>
+                            getToken={getToken}>
                         </MessageSendButton>
                     </div>
                 </div>

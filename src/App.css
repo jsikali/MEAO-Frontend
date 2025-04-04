@@ -1,5 +1,6 @@
 body {
   background-color: #33343d;
+  color: white;
 }
 
 .login-cover {
@@ -35,4 +36,5 @@ input {
   background-color: #33343d;
   height: 30px;
   width: 48%;
+  color: white;
 }

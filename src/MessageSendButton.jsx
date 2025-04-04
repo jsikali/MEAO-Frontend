@@ -2,7 +2,7 @@ import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 
-const MessageSendButton = ({ chatBoxID, getIsLoggedIn }) => {
+const MessageSendButton = ({ chatBoxID, getToken }) => {
 
   const sendMessage = () => {
     console.log(
@@ -15,7 +15,7 @@ const MessageSendButton = ({ chatBoxID, getIsLoggedIn }) => {
         axios({
           method: 'post',
           url: 'http://137.112.221.75:5000/message/public',
-          headers: { Authorization: `Bearer ${getIsLoggedIn()}` },
+          headers: { Authorization: `Bearer ${getToken()}` },
           data: {
             content: document.getElementById('publicchat').value
           }

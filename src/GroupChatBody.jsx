@@ -1,6 +1,6 @@
 //import React, { useState } from 'react';
 
-const PrivateChatBox = () => {
+const GroupChatBody = () => {
     return (
         <div style={{
             padding: '10px'
@@ -11,4 +11,4 @@ const PrivateChatBox = () => {
     );
 };
 
-export default PrivateChatBox;
+export default GroupChatBody;

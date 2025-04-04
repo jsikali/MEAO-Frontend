@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { Button, /*theme*/ } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
-import PrivateChatSelector from './PrivateChatSelector.jsx';
-import PrivateChatBody from './PrivateChatBody.jsx'
+import GroupChatSelector from './GroupChatSelector.jsx';
+import GroupChatBody from './GroupChatBody.jsx'
 
-const PrivateChatBox = () => {
+const GroupChatBox = ({ getToken }) => {
     //const { token } = theme.useToken();
     const [isSelectingChat, setIsSelectingChat] = useState(true);
 
     const swapBoxContent = (isSelectingChat) => {
         // console.log("swapping to ", isSelectingChat)
         if (isSelectingChat) {
-            return <PrivateChatSelector
-                setIsSelectingChat={setIsSelectingChat} />
+            return <GroupChatSelector
+                getToken={getToken} 
+                setIsSelectingChat={ setIsSelectingChat} />
         }
         else {
-            return <PrivateChatBody />
+            return <GroupChatBody />
         }
     };
 
@@ -63,4 +64,4 @@ const PrivateChatBox = () => {
     );
 };
 
-export default PrivateChatBox;
+export default GroupChatBox;

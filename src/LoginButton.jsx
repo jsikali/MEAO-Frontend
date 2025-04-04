@@ -2,7 +2,7 @@ import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 
-const LoginButton = ({ setIsLoggedIn }) => {
+const LoginButton = ({ setToken }) => {
   const sendLoginDetails = (user, pass) => {
     console.log(
       `logging in with user: ${user} and pass: ${pass}`
@@ -17,7 +17,7 @@ const LoginButton = ({ setIsLoggedIn }) => {
       }
     }).then(res => {
       console.log(res.data.access_token)
-      setIsLoggedIn(res.data.access_token)
+      setToken(res.data.access_token)
     }).catch(err => {
       console.log(err)
     })
