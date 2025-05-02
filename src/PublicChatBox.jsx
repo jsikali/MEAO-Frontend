@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button /*theme*/ } from "antd";
-import Messages from "./Messages.jsx";
 import axios from "axios";
 import MessageSendButton from "./MessageSendButton.jsx";
 import { API_ADDRESS, FETCH_FREQUENCY } from './App.jsx';
