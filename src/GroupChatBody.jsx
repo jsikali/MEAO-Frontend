@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import MessageSendButton from './MessageSendButton.jsx';
+import { API_ADDRESS, FETCH_FREQUENCY } from './App.jsx';
 
 const GroupChatBody = ({ token, groupID }) => {
     const [messages, setMessages] = useState([]);
@@ -9,7 +10,7 @@ const GroupChatBody = ({ token, groupID }) => {
     useEffect(() => {
         const fetchMessages = () => {
             axios
-                .get("http://137.112.221.75:5000/messages/group/" + groupID,
+                .get(API_ADDRESS + "messages/group/" + groupID,
                     { headers: { Authorization: `Bearer ${token}` } },
                 )
                 .then((res) => {
@@ -21,7 +22,7 @@ const GroupChatBody = ({ token, groupID }) => {
         };
 
         fetchMessages();
-        const interval = setInterval(fetchMessages, 3000);
+        const interval = setInterval(fetchMessages, FETCH_FREQUENCY);
         return () => clearInterval(interval);
     }, [token]);
 

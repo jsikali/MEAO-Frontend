@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'antd';
+import { API_ADDRESS, FETCH_FREQUENCY } from './App.jsx';
 
 const GroupChatSelector = ({ getToken, setGroupID, token }) => {
     let content = [];
@@ -12,7 +13,7 @@ const GroupChatSelector = ({ getToken, setGroupID, token }) => {
             if (token) {
                 axios({
                     method: 'get',
-                    url: 'http://137.112.221.75:5000/groups',
+                    url: API_ADDRESS + 'groups',
                     headers: { Authorization: `Bearer ${token}` },
                 })
                     .then((res) => {
@@ -24,7 +25,7 @@ const GroupChatSelector = ({ getToken, setGroupID, token }) => {
             }
         };
         fetchGroups();
-        const interval = setInterval(fetchGroups, 3000);
+        const interval = setInterval(fetchGroups, FETCH_FREQUENCY);
         return () => clearInterval(interval);
     }, [token]);
 

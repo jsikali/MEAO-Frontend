@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
+import { API_ADDRESS } from './App.jsx';
 
 const MessageSendButton = ({ chatBoxID, token, groupID, recipientID }) => {
 
@@ -12,7 +13,7 @@ const MessageSendButton = ({ chatBoxID, token, groupID, recipientID }) => {
       case 'publicchat':
         axios({
           method: 'post',
-          url: 'http://137.112.221.75:5000/message/public',
+          url: API_ADDRESS + 'message/public',
           headers: { Authorization: `Bearer ${token}` },
           data: {
             content: document.getElementById('publicchat').value

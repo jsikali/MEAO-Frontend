@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'antd';
+import { API_ADDRESS, FETCH_FREQUENCY } from './App.jsx';
 
 const PrivateChatSelector = ({ getToken, setRecipientID }) => {
     let content = [];
@@ -14,7 +15,7 @@ const PrivateChatSelector = ({ getToken, setRecipientID }) => {
             if (token) {
                 axios({
                     method: 'get',
-                    url: 'http://137.112.221.75:5000/dms',
+                    url: API_ADDRESS + 'dms',
                     headers: { Authorization: `Bearer ${token}` },
                 })
                     .then((res) => {
@@ -27,7 +28,7 @@ const PrivateChatSelector = ({ getToken, setRecipientID }) => {
             }
         };
         fetchDMs();
-        const interval = setInterval(fetchDMs, 3000);
+        const interval = setInterval(fetchDMs, FETCH_FREQUENCY);
         return () => clearInterval(interval);
     }, [token]);
 

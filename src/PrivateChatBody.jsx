@@ -3,6 +3,7 @@ import { Button, /*theme*/ } from 'antd';
 import Messages from './Messages.jsx';
 import axios from 'axios';
 import MessageSendButton from './MessageSendButton.jsx';
+import { API_ADDRESS, FETCH_FREQUENCY } from './App.jsx';
 
 const PrivateChatBody = ({ token, recipientID }) => {
     const [messages, setMessages] = useState([]);
@@ -11,7 +12,7 @@ const PrivateChatBody = ({ token, recipientID }) => {
     useEffect(() => {
         const fetchMessages = () => {
             axios
-                .get("http://137.112.221.75:5000/messages/direct/" + recipientID,
+                .get(API_ADDRESS + "messages/direct/" + recipientID,
                     { headers: { Authorization: `Bearer ${token}` } },
                 )
                 .then((res) => {
@@ -23,7 +24,7 @@ const PrivateChatBody = ({ token, recipientID }) => {
         };
 
         fetchMessages();
-        const interval = setInterval(fetchMessages, 1000);
+        const interval = setInterval(fetchMessages, FETCH_FREQUENCY);
         return () => clearInterval(interval);
     }, [token]);
 

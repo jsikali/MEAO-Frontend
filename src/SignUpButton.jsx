@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
+import { API_ADDRESS } from './App.jsx';
 
 const sendSignUpDetails = (user, pass) => {
   console.log(
@@ -9,7 +10,7 @@ const sendSignUpDetails = (user, pass) => {
 
     axios({
       method: 'post',
-      url: 'http://137.112.221.75:5000/signup',
+      url: API_ADDRESS + 'signup',
       data: {
         username: user,
         password: pass

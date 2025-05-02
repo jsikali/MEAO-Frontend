@@ -3,6 +3,7 @@ import { Button /*theme*/ } from "antd";
 import Messages from "./Messages.jsx";
 import axios from "axios";
 import MessageSendButton from "./MessageSendButton.jsx";
+import { API_ADDRESS, FETCH_FREQUENCY } from './App.jsx';
 
 const PublicChatBox = ({ getToken }) => {
   const [messages, setMessages] = useState([]);
@@ -11,7 +12,7 @@ const PublicChatBox = ({ getToken }) => {
   useEffect(() => {
     const fetchMessages = () => {
       axios
-        .get("http://137.112.221.75:5000/messages/public")
+        .get(API_ADDRESS + "messages/public")
         .then((res) => {
           setMessages(res.data.messages);
         })
@@ -21,7 +22,7 @@ const PublicChatBox = ({ getToken }) => {
     };
 
     fetchMessages();
-    const interval = setInterval(fetchMessages, 1000);
+    const interval = setInterval(fetchMessages, FETCH_FREQUENCY);
     return () => clearInterval(interval);
   }, []);
 
