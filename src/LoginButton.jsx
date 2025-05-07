@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 import { API_ADDRESS } from './App.jsx';
 
@@ -35,9 +34,11 @@ const LoginButton = ({ setToken }) => {
       }
       style={{
         borderRadius: "10px",
+        width: "100%",
+        marginTop: "10px"
       }}
     >
-      Login!
+      login
     </Button>
   );
 };
