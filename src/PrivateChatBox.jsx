@@ -3,19 +3,50 @@ import { Button, /*theme*/ } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import PrivateChatSelector from './PrivateChatSelector.jsx';
 import PrivateChatBody from './PrivateChatBody.jsx'
-
+import { API_ADDRESS } from './App.jsx';
+import axios from "axios";
 
 const PrivateChatBox = ({ getToken }) => {
     //const { token } = theme.useToken();
     const [recipientID, setRecipientID] = useState(-1);
 
+    const createDM = () => {
+        console.log("trying to add chat to " + document.getElementById('recipient').value)
+        axios({
+            method: 'post',
+            url: API_ADDRESS + 'dm',
+            data: {
+                recipient: document.getElementById('recipient').value
+            }
+        })
+    }
+
     const swapBoxContent = (recipientID) => {
         // console.log("swapping to ", isSelectingChat)
         if (recipientID == -1) {
             console.log("select priv chat");
-            return <PrivateChatSelector
-                getToken={getToken}
-                setRecipientID={setRecipientID} />
+            return <div
+                style={{ height: '60vh' }}>
+                <PrivateChatSelector
+                    getToken={getToken}
+                    setRecipientID={setRecipientID} />
+                <div style={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '0px',
+                    display: 'flex',
+                    justifyContent: 'space-around'
+                }}>
+                    <input type="text" id='recipient'
+                        placeholder="recipient"
+                        style={{ width: '50%' }} />
+                    <Button
+                        type="primary"
+                        onClick={() => { createDM() }}>
+                        create dm
+                    </Button>
+                </div>
+            </div>
         }
         else {
             return <PrivateChatBody
