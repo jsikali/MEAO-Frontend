@@ -15,6 +15,7 @@ const PrivateChatBox = ({ getToken }) => {
         axios({
             method: 'post',
             url: API_ADDRESS + 'dm',
+            headers: { Authorization: `Bearer ${getToken()}` },
             data: {
                 recipient: document.getElementById('recipient').value
             }
