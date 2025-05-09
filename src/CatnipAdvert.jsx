@@ -15,7 +15,7 @@ function CatnipAdvert() {
       boxSizing: 'border-box',
   };
 
-  const ad = () => {
+  function showAd() {
    console.log("hello hiiii")
    axios({ method: 'get',
             url: 'http://ads.csse.rose-hulman.edu/?category=cats&affiliate=MEAO',
@@ -35,26 +35,23 @@ function CatnipAdvert() {
             imgElement.src = url;
             const imgLocation = document.getElementById("image-here");
             //imgLocation.appendChild(imgElement);
-            imgLocation.innerHTML = imgElement.outerHTML;
+            return imgLocation.innerHTML = imgElement.outerHTML;
          })
          .catch((err) => {
             console.error("failed to get advert\n", err);
          });}
+      
+   showAd(); //wahooooooooo yay yay
 
 
   return (
-      <div style={containerStyle}
-      onClick={() =>
-         //console.log("click!!!")
-         ad()
-       }>
-          <div style={{
-              marginTop: '2vh',
-              height: '5vh',
-          }} 
-          id="image-here">
+      <div style={containerStyle}>
+         <div style={{
+            marginTop: '2vh',
+            height: '5vh',
+         }} 
+         id="image-here">
             <p>show an ad lalalallalala</p>
-            
          </div>
       </div>  )          
 };
