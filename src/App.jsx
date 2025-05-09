@@ -9,10 +9,10 @@ import GroupChatBox from './GroupChatBox.jsx';
 import CatnipAdvert from './CatnipAdvert.jsx';
 
 // jay puter
-//export const API_ADDRESS = 'http://137.112.221.169:5000/';
+export const API_ADDRESS = 'http://137.112.221.169:5000/';
 
 // josh puter
-export const API_ADDRESS = 'http://137.112.212.118:5000/';
+// export const API_ADDRESS = 'http://137.112.212.118:5000/';
 export const FETCH_FREQUENCY = 10000
 
 function App() {
@@ -28,7 +28,8 @@ function App() {
   const getToken = () => token;
   const getToggle = () => toggle;
 
-  const advertise = true;
+  const advertise = !token; //string initially, !token is true when logged out;
+                    //&& 
 
   return (
     <ConfigProvider

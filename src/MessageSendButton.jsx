@@ -29,7 +29,7 @@ const MessageSendButton = ({ chatBoxID, token, groupID, recipientID }) => {
       case 'groupchat':
         axios({
           method: 'post',
-          url: 'http://137.112.221.75:5000/message/group',
+          url: API_ADDRESS + 'message/group',
           headers: { Authorization: `Bearer ${token}` },
           data: {
             group_id: groupID,
@@ -46,7 +46,7 @@ const MessageSendButton = ({ chatBoxID, token, groupID, recipientID }) => {
       case 'privatechat':
         axios({
           method: 'post',
-          url: 'http://137.112.221.75:5000/message/direct',
+          url: API_ADDRESS + 'message/direct',
           headers: { Authorization: `Bearer ${token}` },
           data: {
             recipient_id: recipientID,
