@@ -2,6 +2,8 @@ import { Button, Typography } from "antd";
 import SignUpButton from "./SignUpButton.jsx";
 import LoginButton from "./LoginButton.jsx";
 import React from "react";
+import axios from 'axios';
+import { API_ADDRESS } from './App.jsx';
 
 const { Text } = Typography;
 
@@ -32,11 +34,45 @@ const Login = ({ setToken, getToken, switchToggle, getToggle }) => {
     fontSize: '10px'
   };
 
+  const addMembership = (randomInfo) => {
+    if (randomInfo.length != 16) {
+        axios({
+            method: 'post',
+            url: API_ADDRESS + 'membership/upgrade',
+            headers: { Authorization: `Bearer ${getToken()}` },
+        })
+            .then(() => {
+                console.log("member!!!");
+                document.getElementById("membershipPayment").value = "";
+            })
+            .catch((err) => {
+                console.error("couldn't get groups:", err);
+            });
+    }
+};
+
   return (
     <div style={containerStyle}>
       <div>
         {getToken() ? (
+          <>
           <h2>logged in successfully!</h2>
+          <Button
+            type="primary"
+            onClick={() => addMembership( document.getElementById("membershipPayment").value )}
+            style={{
+              borderRadius: "10px",
+              marginBottom: "10px"
+            }}
+          >
+            MEAO Catnip =^o.o^=
+          </Button>
+          <input
+                  type="password" //just so its not visible
+                  id="membershipPayment"
+                  placeholder="FAKE credit card info THAT ISNT REAL!"
+                  style={{ width: '95%' }}/>
+          </>
         ) : (
           <h2>{getToggle() ? "login" : "sign up"}</h2>
         )}
