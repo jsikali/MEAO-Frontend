@@ -101,7 +101,21 @@ const Settings = ({ getToken }) => {
         {getToken().length == 0 ? (
           <h2>log in to access settings</h2>
         ) : (
-          <h2>settings Soon(tm)!</h2>
+          <>
+            <h2>settings Soon(tm)!</h2>
+            // option to pay to remove ads for a period of time
+            
+            // option to pay for diff chat box colors
+            <Button
+              type="primary"
+              onClick={() => <CatnipAdvert></CatnipAdvert>} //send request and reload to sign them out since acc del anyways
+              style={{
+                borderRadius: "10px",
+              }}
+            >
+              MEAO Catnip
+            </Button>
+          </>
         )}
       </div>
     </div>

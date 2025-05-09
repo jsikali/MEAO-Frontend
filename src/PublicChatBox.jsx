@@ -43,8 +43,20 @@ const PublicChatBox = ({ getToken }) => {
 
   const msgRedact = (msg) => {
     console.log("redacting a message");
-    msg.content = "[REDACTED]" //do some eqv to this that actually works lol
-    alert("message will be redacted!!");
+    axios({
+      method: 'post',
+      url: API_ADDRESS + 'redact',
+      headers: { Authorization: `Bearer ${getToken()}` },
+      data: {
+        content: msg.sender_id
+      }
+    })
+      .then(() => {
+        alert("message will be redacted!!");
+      })
+      .catch((err) => {
+        console.error("coudldn't redact:", err);
+      });
   };
 
   return (

@@ -6,6 +6,7 @@ import PublicChatBox from './PublicChatBox.jsx';
 import Settings from './Settings.jsx';
 import React, { useState } from "react";
 import GroupChatBox from './GroupChatBox.jsx';
+import CatnipAdvert from './CatnipAdvert.jsx';
 
 export const API_ADDRESS = 'http://137.112.221.169:5000/';
 export const FETCH_FREQUENCY = 10000
@@ -22,6 +23,8 @@ function App() {
   // }
   const getToken = () => token;
   const getToggle = () => toggle;
+
+  const advertise = true;
 
   return (
     <ConfigProvider
@@ -84,7 +87,8 @@ function App() {
                 log in to see private chats!
               </h1>
             </div>}
-            <PrivateChatBox getToken={getToken} />
+            {advertise && <CatnipAdvert></CatnipAdvert>}
+            {!advertise && <PrivateChatBox getToken={getToken} />}
           </Col>
           <Col span={7} className="chat-div" id="one-to-many">
             {!token && <div className="login-cover">
