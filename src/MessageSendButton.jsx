@@ -2,6 +2,8 @@ import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 import { API_ADDRESS } from './App.jsx';
+import { triggerAdExternally } from "./CatnipAdvert";
+import CatnipAdvert from "./CatnipAdvert";
 
 const MessageSendButton = ({ chatBoxID, token, groupID, recipientID }) => {
 
@@ -18,8 +20,23 @@ const MessageSendButton = ({ chatBoxID, token, groupID, recipientID }) => {
           data: {
             content: document.getElementById('publicchat').value
           }
-        })
-          .then(() => {
+        }).then((response) => {
+            document.getElementById(chatBoxID).value = "";
+            console.log(response.data);
+            //console.log(JSON.parse(response.data));
+            var resJSON = JSON.stringify(response.data);
+            var showAd = JSON.parse(resJSON).showAd;
+
+            console.log(showAd);
+
+            if(!showAd)
+            {
+              <CatnipAdvert></CatnipAdvert>
+              console.log("show an ad!! PLEASE PLESE PLEASE PLEASW EPLEASE PLEASE PLEASE");
+              triggerAdExternally();
+              console.log("ad is shown?? please?????");
+            }
+          }).then(() => {
             document.getElementById(chatBoxID).value = "";
           })
           .catch((err) => {
