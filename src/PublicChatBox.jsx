@@ -42,7 +42,25 @@ const PublicChatBox = ({ getToken }) => {
       url: API_ADDRESS + 'redact',
       headers: { Authorization: `Bearer ${getToken()}` },
       data: {
-        content: msg.sender_id
+        message_id: `${msg.id}`
+      }
+    })
+      .then(() => {
+        alert("message will be redacted!!");
+      })
+      .catch((err) => {
+        console.error("coudldn't redact:", err);
+      });
+  };
+
+  const msgReport = (msg) => {
+    console.log("reporting a message");
+    axios({
+      method: 'post',
+      url: API_ADDRESS + 'report',
+      headers: { Authorization: `Bearer ${getToken()}` },
+      data: {
+        message_id: `${msg.id}`
       }
     })
       .then(() => {
@@ -115,7 +133,7 @@ const PublicChatBox = ({ getToken }) => {
                   {/* compliance jumpscare (buttons that do nothing rn) */}
                   <Button
                     type="primary"
-                    onClick={() => console.log("send report to server")}
+                    onClick={() => msgReport(msg)}
                     style={{
                       borderRadius: "10px",
                     }}
