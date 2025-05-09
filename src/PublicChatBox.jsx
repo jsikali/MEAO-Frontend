@@ -36,13 +36,14 @@ const PublicChatBox = ({ getToken }) => {
   };
 
   const msgRedact = (msg) => {
-    console.log("redacting a message");
+    console.log(msg);
+    //console.log("redacting a message");
     axios({
       method: 'post',
       url: API_ADDRESS + 'redact',
       headers: { Authorization: `Bearer ${getToken()}` },
       data: {
-        message_id: `${msg.id}`
+        message_id: `${msg.message_id}`
       }
     })
       .then(() => {
@@ -60,7 +61,7 @@ const PublicChatBox = ({ getToken }) => {
       url: API_ADDRESS + 'report',
       headers: { Authorization: `Bearer ${getToken()}` },
       data: {
-        message_id: `${msg.id}`
+        message_id: `${msg.message_id}`
       }
     })
       .then(() => {
