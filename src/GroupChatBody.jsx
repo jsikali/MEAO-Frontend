@@ -43,49 +43,55 @@ const GroupChatBody = ({ token, groupID }) => {
     };
 
     return (
-        <div style={{
-            height: '60vh',
-            overflowX: 'hidden',
-            overflowY: 'auto',
-        }}>
+        <div style={containerStyle}>
+            <div style={{ marginTop: '2vh', height: '5vh' }}>
+                <h2>all chat!</h2>
+            </div>
             <div style={{
-                backgroundColor: '#7B7D93',
-                minHeight: '100%',
-                overflow: 'hidden'
+                height: '60vh',
+                overflowX: 'hidden',
+                overflowY: 'auto',
+                borderRadius: '10px',
             }}>
-                <div style={{ padding: '10px' }}>
-                    {messages.slice().map((msg, index) => (
-                        <div key={index} style={{
-                            backgroundColor: 'white',
-                            padding: '5px 10px',
-                            margin: '5px',
-                            borderRadius: '5px'
-                        }}>
-                            <div style={{}}>
-                                <span style={{
+                <div style={{
+                    backgroundColor: '#7B7D93',
+                    minHeight: '100%',
+                    overflow: 'hidden'
+                }}>
+                    <div style={{ padding: '10px' }}>
+                        {messages.slice().map((msg, index) => (
+                            <div key={index} style={{
+                                backgroundColor: 'white',
+                                padding: '5px 10px',
+                                margin: '5px',
+                                borderRadius: '5px'
+                            }}>
+                                <div style={{}}>
+                                    <span style={{
+                                        color: '#33343d'
+                                    }}>{msg.sender_username} </span>
+                                    <span style={{
+                                        color: '#7B7D93'
+                                    }}> {new Date(msg.timestamp).toLocaleString()}</span>
+                                </div>
+                                <p style={{
                                     color: '#33343d'
-                                }}>{msg.sender_username} </span>
-                                <span style={{
-                                    color: '#7B7D93'
-                                }}> {new Date(msg.timestamp).toLocaleString()}</span>
+                                }}>{msg.content}</p>
                             </div>
-                            <p style={{
-                                color: '#33343d'
-                            }}>{msg.content}</p>
-                        </div>
-                    ))}
-                    {/* Empty div to help scroll to bottom */}
-                    <div ref={messagesEndRef}></div>
-                    {/* have the input for sending */}
-                    <input type="text" id='groupchat' style={{
-                        margin: '5px',
-                        width: '75%'
-                    }} />
-                    <MessageSendButton
-                        groupID={groupID}
-                        chatBoxID='groupchat'
-                        token={token}>
-                    </MessageSendButton>
+                        ))}
+                        {/* Empty div to help scroll to bottom */}
+                        <div ref={messagesEndRef}></div>
+                        {/* have the input for sending */}
+                        <input type="text" id='groupchat' style={{
+                            margin: '5px',
+                            width: '75%'
+                        }} />
+                        <MessageSendButton
+                            groupID={groupID}
+                            chatBoxID='groupchat'
+                            token={token}>
+                        </MessageSendButton>
+                    </div>
                 </div>
             </div>
         </div>

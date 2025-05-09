@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 import { API_ADDRESS } from './App.jsx';
 
@@ -8,17 +7,17 @@ const sendSignUpDetails = (user, pass) => {
     `signing up with user: ${user} and pass: ${pass}`
   );
 
-    axios({
-      method: 'post',
-      url: API_ADDRESS + 'signup',
-      data: {
-        username: user,
-        password: pass
-      }
-    })
-  };
+  axios({
+    method: 'post',
+    url: API_ADDRESS + 'signup',
+    data: {
+      username: user,
+      password: pass
+    }
+  });
+};
 
-const LoginButton = () => {
+const SignUpButton = () => {
   return (
     <Button
       type="primary"
@@ -30,11 +29,13 @@ const LoginButton = () => {
       }
       style={{
         borderRadius: "10px",
+        width: "100%",
+        marginTop: "10px"
       }}
     >
-      Sign Up!
+      sign up
     </Button>
   );
 };
 
-export default LoginButton;
+export default SignUpButton;
