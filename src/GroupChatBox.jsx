@@ -3,18 +3,55 @@ import { Button, /*theme*/ } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import GroupChatSelector from './GroupChatSelector.jsx';
 import GroupChatBody from './GroupChatBody.jsx'
+import axios from "axios";
+import { API_ADDRESS } from './App.jsx';
 
 const GroupChatBox = ({ getToken }) => {
     //const { token } = theme.useToken();
     const [groupID, setGroupID] = useState(-1);
 
+    const createGroupChat = () => {
+        console.log("trying to add chat to " + document.getElementById('groupMembers').value + ' named ' + document.getElementById('groupName').value)
+        axios({
+            method: 'post',
+            url: API_ADDRESS + 'group',
+            headers: { Authorization: `Bearer ${getToken()}` },
+            data: {
+                group_name: document.getElementById('groupName').value,
+                members: document.getElementById('groupMembers').value
+            }
+        })
+    }
+
     const swapBoxContent = (groupID) => {
         // console.log("swapping to ", isSelectingChat)
         if (groupID == -1) {
-            return <GroupChatSelector
-                getToken={getToken}
-                setGroupID={setGroupID}
-                token={getToken()} />
+            return <div style={{ height: '60vh' }}>
+                <GroupChatSelector
+                    getToken={getToken}
+                    setGroupID={setGroupID}
+                    token={getToken()} />
+                <div style={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '0px',
+                    display: 'flex',
+                    justifyContent: 'space-around'
+                }}>
+                    <input type="text" id='groupName'
+                        placeholder="group name"
+                        style={{ width: '30%' }} />
+                    <input type="text" id='groupMembers'
+                        placeholder="separate w/ comma"
+                        style={{ width: '30%' }} />
+                    <Button
+                        type="primary"
+                        onClick={() => { createGroupChat() }}>
+                        create group
+                    </Button>
+                </div>
+            </div>
+
         }
         else {
             return <GroupChatBody

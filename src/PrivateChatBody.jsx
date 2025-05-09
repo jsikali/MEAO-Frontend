@@ -28,13 +28,6 @@ const PrivateChatBody = ({ token, recipientID }) => {
         return () => clearInterval(interval);
     }, [token]);
 
-    // Scroll to bottom when messages update
-    useEffect(() => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, [messages]);
-
     const containerStyle = {
         height: '100%',
         overflow: 'auto',
