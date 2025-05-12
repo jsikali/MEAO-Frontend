@@ -18,7 +18,7 @@ const GroupChatBox = ({ getToken }) => {
             headers: { Authorization: `Bearer ${getToken()}` },
             data: {
                 group_name: document.getElementById('groupName').value,
-                members: document.getElementById('groupMembers').value
+                members: ['WAWA', 'admin']
             }
         })
     }

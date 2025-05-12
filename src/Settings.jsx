@@ -4,7 +4,7 @@ import { useState } from "react";
 const Settings = ({ getToken }) => {
   console.log("hi its me settings");
   console.log(`the token: ${getToken()}`);
-  
+
   // Modal state
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -23,28 +23,61 @@ const Settings = ({ getToken }) => {
   };
 
   // PAINTA compliance content
-  const paintaContent = `In analyzing PAINTA, we have identified the following key requirements to add to MEAO:
+  const privacyPolicyContent = `Privacy Policy for MEAO
+(Messages Everywhere All at Once)
 
-Allow reporting of messages on the MEAO frontend
-Each message will have a report icon that will send information about the reporter, sender, and message
-This will allow for the "Falsehood Reporting" noted in Part I
+1. Introduction
 
-Allow redaction of messages from permitted users on the MEAO frontend
-Done by user admins (identified by their user id)
-Message content replaced with [REDACTED]
-This will allow for "Redaction" of messages noted in Part I while not permitting all users to censor each other
+MEAO is committed to protecting your privacy with the highest degree of care and transparency. This Privacy Policy describes how we collect, use, store, share, and retain information when you use our messaging platform. In addition, it describes how we comply with PAINTA and other applicable privacy regulations.
 
-Begin logging of interactions on MEAO backend
-By logging all interactions, messages sent, reported, redacted, etc can be found within a file that can be searched based on the interaction needed, allowing for compliance with "Logging" and "Reporting" outlined in Part II
+2. Data We Collect
 
-Request to be forgotten in MEAO frontend
-Button in settings to delete account
-This will send a request to erase all information tied to the information after 6 months from the initial deletion request. This allows for compliance for Part III, as users will be deleted in time, but the delay assists with Part II "Reporting" compliance, as the delay gives law enforcement time to request reports on users. Logs are stored in the backend and sent with our Flask RESTful API
+2.1 Subscription & Billing Information
+• Account Identifier: Pseudonymous user ID.
+• Subscription Tier: Free vs. Premium ($30/month)
+• Payment Details: Fake debit/credit card info can be inputted to gain a 30 day subscription, but this information is not actually stored.
 
-Request to have compliance with PAINTA explained on MEAO frontend
-All visitors to MEAO, regardless of whether they are a current user, newcomer, or law enforcement, can access an explanation of MEAO's compliance with PAINTA on the MEAO frontend found in the settings box. Should a further explanation be requested, users can reach out to the creators of MEAO
+2.2 Audit Logs
+• What: Timestamped records of key system events (e.g., login, message-tag generation, subscription changes).
+• Identifier: Only your pseudonymous account ID (no real name, email, or other PII).
 
-do NOT email: fake email @ address . domain`;
+3. How We Use Your Data
+
+• Advertising (Free Tier): We trigger untargeted ads based on user message count. No raw message content or PII is processed or shared.
+• Subscription Management (Premium Tier): We manage your paid status, control access to ad-free service and premium features (e.g., custom fonts, badges).
+• PAINTA Compliance: Usage logs of messages sent remain for 6 months after account deletion (via request to be forgotten) to provide a period for law enforcement to potentially request user information before it is eventually deleted.
+
+4. Data Sharing
+
+• No Data Brokers: We never sell or rent user data to third-party data brokers.
+• Ad Partners: We do not collect/use any user data to provide ads. All advertisements are untargeted and fetched from an ad server that only receives information to associate ads served to our users with our service for the sake of payment. It is able to see the number of messages a user sends so that they can be shown an ad, but no message content will be relayed to the advertisers.
+• Legal Compliance: We only disclose data in the event of law enforcement requests in line with PAINTA. Disclosure of user data would be limited to their chat logs and information about messages being reported/redacted.
+
+5. Data Retention & Right of Erasure
+
+Data retention details:
+
+  - Data Type: Subscription Records
+    Retention Period: Up to 7 years
+    Notes: For accounting and audit purposes
+
+  - Data Type: Audit Logs
+    Retention Period: 180 days
+    Notes: Pseudonymous; auto-purge after retention
+
+• Right of Erasure: You may request deletion of all personal data linked to your account at any time. Audit logs (pseudonymous) are retained for up to 180 days to satisfy PAINTA reporting requirements, then automatically purged.
+
+6. Security Measures
+
+We implement industry-standard safeguards:
+• Encryption of data at rest and in transit.
+• Access controls and role-based permissions.
+• Regular security audits and penetration testing.
+
+7. Changes to This Policy
+
+We may update this Privacy Policy to reflect new features, regulatory requirements, or business practices. Material changes will be communicated via in-app notification at least 30 days before they take effect.
+`;
 
   return (
     <div style={containerStyle}>
@@ -66,7 +99,7 @@ do NOT email: fake email @ address . domain`;
               marginBottom: "10px"
             }}
           >
-            PAINTA compliance breakdown
+            Privacy Policy
           </Button>
           <Button
             type="primary"
@@ -78,28 +111,24 @@ do NOT email: fake email @ address . domain`;
             Forget Me
           </Button>
         </div>
-        
-        {/* Modal for PAINTA Compliance */}
+
+        {/* Modal for privacy policy */}
         <Modal
-          title="PAINTA Compliance Breakdown"
+          title="Privacy Policy"
           open={modalVisible}
           onOk={() => setModalVisible(false)}
           onCancel={() => setModalVisible(false)}
           width={700}
         >
           <div style={modalContentStyle}>
-            {paintaContent}
+            {privacyPolicyContent}
           </div>
         </Modal>
-        
+
         {getToken().length == 0 ? (
-          <h2>log in to access settings</h2>
+          <></>
         ) : (
           <>
-            <h2>settings Soon(tm)!</h2>
-            // option to pay to remove ads for a period of time
-            
-            // option to pay for diff chat box colors
             <Button
               type="primary"
               onClick={() => <CatnipAdvert></CatnipAdvert>} //send request and reload to sign them out since acc del anyways
