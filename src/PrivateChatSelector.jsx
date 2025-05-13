@@ -6,7 +6,7 @@ import { API_ADDRESS, FETCH_FREQUENCY } from './App.jsx';
 const PrivateChatSelector = ({ getToken, setRecipientID }) => {
     let content = [];
     let token = getToken();
-    console.log(`priv chat sel token: ${token}`)
+    //console.log(`priv chat sel token: ${token}`)
 
     const [groups, setGroups] = useState([]);
 

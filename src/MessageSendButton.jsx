@@ -2,10 +2,11 @@ import { Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import axios from 'axios';
 import { API_ADDRESS } from './App.jsx';
-import { triggerAdExternally } from "./CatnipAdvert";
 import CatnipAdvert from "./CatnipAdvert";
+import React, { useState } from "react";
 
 const MessageSendButton = ({ chatBoxID, token, groupID, recipientID }) => {
+  const [showModal, setShowModal] = useState(false);
 
   const sendMessage = () => {
     console.log(
@@ -31,10 +32,9 @@ const MessageSendButton = ({ chatBoxID, token, groupID, recipientID }) => {
 
             if(!showAd)
             {
-              <CatnipAdvert></CatnipAdvert>
-              console.log("show an ad!! PLEASE PLESE PLEASE PLEASW EPLEASE PLEASE PLEASE");
-              triggerAdExternally();
-              console.log("ad is shown?? please?????");
+              setShowModal(true);
+              <CatnipAdvert visible={showModal}></CatnipAdvert>
+              console.log("need to show ad um");
             }
           }).then(() => {
             document.getElementById(chatBoxID).value = "";

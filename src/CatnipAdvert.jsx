@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import axios from "axios";
-// import MessageSendButton from "./MessageSendButton.jsx";
-// import { API_ADDRESS, FETCH_FREQUENCY } from './App.jsx';
 
-let TriggerAd = () => {
-	console.log("trigger an advert");
-}
-
-const CatnipAdvert = () => {
-	
+function CatnipAdvert({visible = true}) {
+  if(visible != true && visible != false){visible = true;}
 	console.log("HELLO HI SHOW AN AD PLEASEEEEEEEEEEEEEE");
   //so idk what i was thinking when i wrote func um. sorry :)
   //anyways. ty kallista i am stealing your code ^^
 
-  var [modalVisible, setModalVisible] = useState(true);
-  
-  useEffect(() => {
-	TriggerAd = () => setModalVisible(true);
- }, []);
+  const [modalVisible, setModalVisible] = useState(visible);
 
-  TriggerAd = () => setModalVisible(true);
+  useEffect(() => {
+    setModalVisible(visible);
+  }, [visible]);
 
   const containerStyle = {
     backgroundColor: "#c2c6E8",
@@ -64,7 +56,6 @@ const CatnipAdvert = () => {
         console.error("failed to get advert\n", err);
       });
   };
-  //showAd();
 
   return (
     <div style={containerStyle}>
@@ -74,7 +65,6 @@ const CatnipAdvert = () => {
           height: "3vh",
         }}
       >
-			modal please show up um um hello hi????
         <Modal
           title="Purchase a membership to stop seeing ads!!!"
           open={modalVisible}
@@ -92,8 +82,3 @@ const CatnipAdvert = () => {
 };
 
 export default CatnipAdvert;
-export function triggerAdExternally() 
-					{
-						console.log("trigger ad called from other file wow");
-						TriggerAd();
-					};
