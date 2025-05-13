@@ -56,7 +56,7 @@ const Login = ({ setToken, getToken, switchToggle, getToggle }) => {
       <div>
         {getToken() ? (
           <>
-          <h2>logged in successfully!</h2>
+          <h2>meao catnip purchase</h2>
           <Button
             type="primary"
             onClick={() => addMembership( document.getElementById("membershipPayment").value )}
@@ -70,7 +70,7 @@ const Login = ({ setToken, getToken, switchToggle, getToggle }) => {
           <input
                   type="password" //just so its not visible
                   id="membershipPayment"
-                  placeholder="FAKE credit card info THAT ISNT REAL!"
+                  placeholder="Enter FAKE card information!"
                   style={{ width: '95%' }}/>
           </>
         ) : (

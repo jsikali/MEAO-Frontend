@@ -124,22 +124,6 @@ We may update this Privacy Policy to reflect new features, regulatory requiremen
             {privacyPolicyContent}
           </div>
         </Modal>
-
-        {getToken().length == 0 ? (
-          <></>
-        ) : (
-          <>
-            <Button
-              type="primary"
-              onClick={() => <CatnipAdvert></CatnipAdvert>} //send request and reload to sign them out since acc del anyways
-              style={{
-                borderRadius: "10px",
-              }}
-            >
-              MEAO Catnip
-            </Button>
-          </>
-        )}
       </div>
     </div>
   );

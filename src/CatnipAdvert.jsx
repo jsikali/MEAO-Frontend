@@ -66,7 +66,7 @@ function CatnipAdvert({visible = true}) {
         }}
       >
         <Modal
-          title="Purchase a membership to stop seeing ads!!!"
+          title="Purchase MEAO Catnip to stop seeing ads!!!"
           open={modalVisible}
           onOk={() => setModalVisible(false)}
           onCancel={() => setModalVisible(false)}
