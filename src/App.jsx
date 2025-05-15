@@ -13,7 +13,7 @@ export const API_ADDRESS = 'http://137.112.221.169:5000/';
 
 // josh puter
 // export const API_ADDRESS = 'http://137.112.212.118:5000/';
-export const FETCH_FREQUENCY = 10000
+export const FETCH_FREQUENCY = 5000;
 
 function App() {
   const [token, setToken] = useState("");
