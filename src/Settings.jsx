@@ -1,5 +1,7 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
+import axios from "axios";
+import { API_ADDRESS } from "./App.jsx";
 
 const Settings = ({ getToken }) => {
   console.log("hi its me settings");
@@ -21,6 +23,22 @@ const Settings = ({ getToken }) => {
   const modalContentStyle = {
     whiteSpace: "pre-line", // Preserves line breaks
   };
+
+  const eraseUser = () =>
+  {
+    axios({
+    method: "post",
+    url: API_ADDRESS + "erase",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  })
+    .then(() => {
+      console.log("user erased yayayyayayay");
+      location.reload();
+    })
+    .catch((err) => {
+      console.error("couldn't erase: ", err);
+    });
+  }
 
   // PAINTA compliance content
   const privacyPolicyContent = `Privacy Policy for MEAO
@@ -96,14 +114,14 @@ We may update this Privacy Policy to reflect new features, regulatory requiremen
             onClick={() => setModalVisible(true)}
             style={{
               borderRadius: "10px",
-              marginBottom: "10px"
+              marginBottom: "10px",
             }}
           >
             Privacy Policy
           </Button>
           <Button
             type="primary"
-            onClick={() => location.reload()} //send request and reload to sign them out since acc del anyways
+            onClick={() => eraseUser() } //send request and reload to sign them out since acc del anyways
             style={{
               borderRadius: "10px",
             }}
@@ -120,9 +138,7 @@ We may update this Privacy Policy to reflect new features, regulatory requiremen
           onCancel={() => setModalVisible(false)}
           width={700}
         >
-          <div style={modalContentStyle}>
-            {privacyPolicyContent}
-          </div>
+          <div style={modalContentStyle}>{privacyPolicyContent}</div>
         </Modal>
       </div>
     </div>
